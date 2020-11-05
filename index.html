@@ -22,92 +22,92 @@
   <div class="container">
     <div class="row">
       <div class="col-2 hour" >8AM</div>
-      <div class="col-8 description past" id ="t8">
-        <input type="text" class="inputBox">
+      <div class="col-8 description " id ="t8">
+        <input type="text" id="i8" class="inputBox">  
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b8"></button>
+        <button class="button" id="b8">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >9AM</div>
       <div class="col-8" id ="t9">
-        <input type="text" class="inputBox">
+        <input type="text" id="i9" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b9"></button>
+        <button class="button" id="b9">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >10AM</div>
       <div class="col-8 description" id ="t10">
-        <input type="text" class="inputBox">
+        <input type="text" id="i10" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b10"></button>
+        <button class="button" id="b10">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >11AM</div>
       <div class="col-8 description" id ="t11">
-        <input type="text" class="inputBox">
+        <input type="text" id="i11" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b11"></button>
+        <button class="button" id="b11">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >12PM</div>
       <div class="col-8 description" id ="t12">
-        <input type="text" class="inputBox">
+        <input type="text" id="i12" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b12"></button>
+        <button class="button" id="b12">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >1PM</div>
       <div class="col-8 description" id ="t13">
-        <input type="text" class="inputBox">
+        <input type="text" id="i13" class="inputBox">
       </div>
       <div class="col-2 saveBtn  i:hover">
-        <button class="button" id="b13"></button>
+        <button class="button" id="b13">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >2PM</div>
       <div class="col-8 description" id ="t14">
-        <input type="text" class="inputBox">
+        <input type="text" id="i14" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b14"></button>
+        <button class="button" id="b14">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour far" >3PM</div>
       <div class="col-8 description" id ="t15">
-        <input type="text" class="inputBox">
+        <input type="text" id="i15" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b15"></button>
+        <button class="button" id="b15">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >4PM</div>
       <div class="col-8 description" id ="t16">
-        <input type="text" class="inputBox">
+        <input type="text" id="i16" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b16"></button>
+        <button class="button" id="b16">Save</button>
       </div>
     </div>
     <div class="row">
       <div class="col-2 hour" >5PM</div>
       <div class="col-8 description" id ="t17">
-        <input type="text" class="inputBox">
+        <input type="text" id="i17" class="inputBox">
       </div>
       <div class="col-2 saveBtn i:hover">
-        <button class="button" id="b17"></button>
+        <button class="button" id="b17">Save</button>
       </div>
     </div>
   </div>
@@ -115,35 +115,40 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
-    
+    // ---Get and display date---
     date = moment().format("dddd, MMM Do YYYY")
     $('#currentDay').append(date)
-
-    hr = moment().format('H')
-    
+    // ---Get the hour---
+    hr = parseInt(moment().format('H'))
+    console.log(hr)
     const hours =[8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-  
+    // ---Use hour to set color on day planner---
     const setColors = () => {
       for (i=0 ; i < hours.length; i++) {
         if (hours[i] < hr) {
           console.log('past')
-          $('#t[i]').addClass('past')
+          $(`#t${hours[i]}`).addClass('past')
         } else if (hours[i] === hr) {
             console.log('present')
-            $('#t[i]').addClass('present')
+            $(`#t${hours[i]}`).addClass('present')
         } else {
           console.log('future')
-          $('#t[i]').addClass('future')
+          // console.log($(#t[i]))
+          $(`#t${hours[i]}`).addClass('future')
         }
       }
     }
     setColors()
-    
+    // ---get user input and write to page---
     $('.button').on('click', function () {
-      console.log($(this).attr('id'))
-      
-      
-      })
+    let hrLocator = ($(this).attr('id').slice(1, ($(this).attr('id').length)))
+    console.log(hrLocator)
+    let inputSearch = `i${hrLocator}`
+    console.log(inputSearch)
+    let userInput = $(`#${inputSearch}`).val()
+    console.log(userInput)
+    $(`#t${hrLocator}`).text(userInput)
+    })
 
 
 
