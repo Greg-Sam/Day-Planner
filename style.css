@@ -4,7 +4,7 @@ body {
   line-height: 1;
 }
 
-textarea {
+.textarea {
   background: transparent;
   border: none;
   resize: none;
@@ -12,6 +12,7 @@ textarea {
   border-left: 1px solid black;
   padding: 10px;
 }
+
 
 .jumbotron {
   text-align: center;
@@ -74,4 +75,18 @@ textarea {
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 45px;
+}
+
+.button {
+  width: 50px
+}
+
+.delete {
+  width: 50px
 }
